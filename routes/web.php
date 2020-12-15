@@ -22,7 +22,7 @@ Auth::routes();
 
 Route::get('@{username}', 'UserController@show');
 
-Route::get('/follow', 'UserController@follow');
+Route::get('/follow/{user_id}', 'UserController@follow');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');

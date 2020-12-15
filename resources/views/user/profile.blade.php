@@ -19,7 +19,23 @@
                     </div>
                     @endif
                     <br>
-
+                    @if (Auth::user()->id == $user->id)
+                        <a class="btn btn-primary" href="/user/edit">Edit Profile</a>
+                        @else
+                        <button class="btn btn-primary" onclick="follow({{$user->id}}, this)">
+                          {{ (Auth::user()->following->contains($user->id) ? 'unfollow' : 'follow' ) }}
+                        </button>
+                        @endif
+                        <script>
+                            function follow(id, el){
+                                fetch('/follow/' + id)
+                                .then(Response => Response.json())
+                                .then(data => {
+                                    el.innerText = (data.status == 'FOLLOW') ? 'unfollow' : 'follow'
+                                });
+                            }
+                        </script>
+                        <br>
                     <h3>Postingan</h3>
                     @foreach($user->posts as $post)
                     <li>

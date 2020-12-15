@@ -49,9 +49,16 @@ class UserController extends Controller //controller user extends ke controller 
         return redirect('/home'); //setelah berhasi melewati validasi rule dan cocok dengan request, arahkan ke home
     }
 
-    public function follow()
+    public function follow($following_id)
     {
         $user = Auth::user();
-        dd($user->follower);
+        if ($user->following->contains($following_id)) {
+            $user->following()->detach($following_id);
+            $message = ['status' => 'UNFOLLOW'];
+        } else {
+            $user->following()->attach($following_id);
+            $message = ['status' => 'FOLLOW'];
+        }
+        return response()->json($message);
     }
 }

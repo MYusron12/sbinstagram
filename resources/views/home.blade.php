@@ -9,10 +9,13 @@
 
                 <div class="card-body">
                     <h3>Postingan</h3>
-                    @foreach($user->posts as $post)
-                    <li>
+                    @foreach($posts as $post)
+                    <div class="mt-5">
                         <img src="{{asset('images/posts/' . $post->image)}}" alt="{{$post->caption}}" width="200px" height="200px"/>
-                   </li>
+                    </div>
+                    <a href="/{{'@'.$post->user->username}}">{{'@'.$post->user->username}}</a>
+                    <div class="mt2">
+                    </div>
                     @endforeach
                 </div>
             </div>
