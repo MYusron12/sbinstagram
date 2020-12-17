@@ -13,7 +13,25 @@
                     <div class="mt-5">
                         <img src="{{asset('images/posts/' . $post->image)}}" alt="{{$post->caption}}" width="200px" height="200px"/>
                     </div>
+<div class="mt-3">
+                    {{-- link ke username / profile --}}
                     <a href="/{{'@'.$post->user->username}}">{{'@'.$post->user->username}}</a>
+                    
+                    {{-- button like/unlike --}}
+                    <button class="btn btn-primary" onclick="like({{$post->id}}, this)">
+                        {{ ($post->is_liked() ? 'unlike' : 'like' ) }}
+                    </button>
+                </div>
+                      <script>
+                          function like(id, el){
+                              fetch('/like/' + id)
+                              .then(Response => Response.json())
+                              .then(data => {
+                                  el.innerText = (data.status == 'LIKE') ? 'unlike' : 'like'
+                              });
+                          }
+                      </script>
+
                     <div class="mt2">
                     </div>
                     @endforeach

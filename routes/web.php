@@ -22,11 +22,12 @@ Auth::routes();
 
 Route::get('@{username}', 'UserController@show');
 
-Route::get('/follow/{user_id}', 'UserController@follow');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('user/edit', 'UserController@edit');
     Route::put('user/edit', 'UserController@update');
     Route::resource('post', 'PostController');
+    Route::get('/follow/{user_id}', 'UserController@follow');
+    Route::get('/like/{post_id}', 'LikeController@toggle');
 });
