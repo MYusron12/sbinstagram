@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <h3>Postingan</h3>
-                    @foreach($posts as $post)
+                    @forelse($posts as $post)
                     {{-- postingan --}}
                     <div class="card mb-3" style="max-width: 18rem;">
                         <div class="card-header">
@@ -18,7 +18,7 @@
                         <div class="card-body">
                                 <img src="{{asset('images/posts/' . $post->image)}}" alt="{{$post->caption}}" width="200px" height="200px" ondblclick="like({{$post->id}})"/>
                           <h5 class="card-title"></h5>
-                          <p class="card-text">Caption : 
+                          <p class="card-text captions">Caption : 
                               <strong>
                                   {{$post->caption}}
                             </strong> 
@@ -29,6 +29,11 @@
                         </div>
                       </div>
                       <script>
+document.querySelectorAll(".captions").forEach(function(el){
+    let renderedText = el.innerHTML.replace(/#(\w+)/g, "<a href='/search?query=%23$1'>#$1</a>");
+    el.innerHTML = renderedText
+})
+
                           function like(id){
                               const el = document.getElementById('post-btn-' + id)
                               fetch('/like/' + id)
@@ -41,7 +46,11 @@
 
                     <div class="mt2">
                     </div>
-                    @endforeach
+                    @empty
+                    <p>Data berupa @isset($querySearch)
+                        {{$querySearch}}, tidak ada
+                    @endisset </p>
+                    @endforelse
                 </div>
             </div>
         </div>

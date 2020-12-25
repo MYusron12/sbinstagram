@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::get('@{username}', 'UserController@show');
 
+Route::get('/search', 'HomeController@search');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');

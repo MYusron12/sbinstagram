@@ -40,11 +40,17 @@
                     @foreach($user->posts as $post)
                     <li>
                         <img src="{{asset('images/posts/' . $post->image)}}" alt="{{$post->caption}}" width="200px" height="200px"/>
+                        <p class="card-text">Caption : 
+                            <strong>
+                                {{$post->caption}}
+                          </strong> 
+                        </p>
                       @if (Auth::user()->id == $user->id)
                       <a href="/post/{{$post->id}}/edit">Edit</a>
                       @endif
                     </li>
                     @endforeach
+                    <br/>
                 </div>
             </div>
         </div>

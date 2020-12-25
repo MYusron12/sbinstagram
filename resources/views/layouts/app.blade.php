@@ -72,6 +72,10 @@
                                     </form>
                                 </div>
                         @endguest
+                        <form action="/search" method="GET" class="form-inline my-2 my-lg-0">
+                            <input name="query"" type="search" placeholder="search" aria-label="search" class="form-control mr-sm-2">
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                        </form>
                     </ul>
                 </div>
             </div>
