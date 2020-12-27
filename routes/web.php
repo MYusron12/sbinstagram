@@ -30,12 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::get('user/edit', 'UserController@edit');
     Route::put('user/edit', 'UserController@update');
     Route::resource('post', 'PostController');
+
     Route::get('/follow/{user_id}', 'UserController@follow');
     Route::get('/like/{post_id}', 'LikeController@toggle');
 
     //routing comment
-    Route::post('comment/{post_id}', 'CommentController@post');
-    Route::get('comment/{comment_id}/edit', 'ComentController@edit');
-    Route::put('comment/{comment_id}', 'ComentController@update');
+    Route::post('comment/{post_id}', 'CommentController@store');
+    Route::get('comment/{comment_id}/edit', 'CommentController@edit');
+    Route::put('comment/{comment_id}', 'CommentController@update');
     Route::delete('comment/{comment_id}', 'CommentController@delete');
 });

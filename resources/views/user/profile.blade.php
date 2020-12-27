@@ -40,7 +40,7 @@
                     @foreach($user->posts as $post)
                     <li>
                         <img src="{{asset('images/posts/' . $post->image)}}" alt="{{$post->caption}}" width="200px" height="200px"/>
-                        <p class="card-text">Caption : 
+                        <p class="card-text captions">Caption : 
                             <strong>
                                 {{$post->caption}}
                           </strong> 
@@ -56,4 +56,6 @@
         </div>
     </div>
 </div>
+
+<script src="{{asset('js/feed.js')}}"></script>
 @endsection
