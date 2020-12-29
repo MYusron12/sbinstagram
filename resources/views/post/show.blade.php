@@ -16,7 +16,12 @@
 
           </form>
           @foreach ($post->comments as $comment)
-              <p><a href="{{'@'.$comment->user->username}}">{{'@'.$comment->user->username}}</a> : {{$comment->body}}</p>
+              <p>
+                <a href="{{'@'.$comment->user->username}}">{{'@'.$comment->user->username}}</a> : {{$comment->body}}
+                @if (Auth::user()->id == $comment->user->id)
+                | <a href="/comment/{{$comment->id}}/edit">Edit</a>
+                @endif
+              </p>
           @endforeach
         </div>
       </div>
