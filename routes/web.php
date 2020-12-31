@@ -35,8 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/like/{post_id}', 'LikeController@toggle');
 
     //routing comment
-    Route::post('comment/{post_id}', 'CommentController@store');
-    Route::get('comment/{comment_id}/edit', 'CommentController@edit');
-    Route::put('comment/{comment_id}', 'CommentController@update');
-    Route::delete('comment/{comment_id}', 'CommentController@delete');
+    // Route::post('comment/{post_id}', 'CommentController@store');
+    // Route::get('comment/{comment_id}/edit', 'CommentController@edit');
+    // Route::put('comment/{comment_id}', 'CommentController@update');
+    // Route::get('comment/{comment_id}/delete', 'CommentController@delete');
+    Route::resource('post.comment', CommentController::class)->shallow();
 });

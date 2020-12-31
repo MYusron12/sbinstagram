@@ -15,6 +15,6 @@
         {{ ($post->is_liked() ? 'unlike' : 'like' ) }}
     </button>
 
-    <a href="/post/{{$post->id}}">komentar</a>
+    <button class="btn btn-primary" href="/post/{{$post->id}}">komentar</button>
   </div>
 </div>
