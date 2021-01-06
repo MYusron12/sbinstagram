@@ -67,7 +67,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        $post->load('comments.user');
+        $post->load('comments.user')->loadCount('likes');
         return view('post.show', compact('post'));
     }
 

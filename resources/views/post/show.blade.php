@@ -21,12 +21,17 @@
                 @if (Auth::user()->id == $comment->user->id)
                 | <a href="/comment/{{$comment->id}}/edit">Edit</a>
                 | <a onclick="event.preventDefault(); document.getElementById('delete-form').submit();">Hapus</a>
-
+                | 
              <form id="delete-form" action="/comment/{{$comment->id}}" method="POST" class="d-none">
                  @csrf
                  @method('DELETE')
              </form>
                 @endif
+                <button class="btn btn-primary" onclick="like({{$comment->id}}, 'COMMENT')" id="comment-btn-{{$comment->id}}">
+                  {{ ($comment->is_liked() ? 'unlike' : 'like' ) }}
+              </button>
+              <span class="total_count" id="comment-likescount-{{$comment->id}}">{{$comment->likes_count}}</span>
+    <a class="btn btn-primary" href="/post/{{$post->id}}">komentar</a>
               </p>
           @endforeach
         </div>

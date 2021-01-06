@@ -14,7 +14,7 @@
     <button class="btn btn-primary" onclick="like({{$post->id}})" id="post-btn-{{$post->id}}">
         {{ ($post->is_liked() ? 'unlike' : 'like' ) }}
     </button>
-
-    <button class="btn btn-primary" href="/post/{{$post->id}}">komentar</button>
+<span class="total_count" id="post-likescount-{{$post->id}}">{{$post->likes_count}}</span>
+    <a class="btn btn-primary" href="/post/{{$post->id}}">komentar</a>
   </div>
 </div>

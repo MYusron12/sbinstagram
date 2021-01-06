@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('post', 'PostController');
 
     Route::get('/follow/{user_id}', 'UserController@follow');
-    Route::get('/like/{post_id}', 'LikeController@toggle');
+    Route::get('/like/{type}/{post_id}', 'LikeController@toggle');
 
     //routing comment
     // Route::post('comment/{post_id}', 'CommentController@store');

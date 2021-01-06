@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\LikesTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, LikesTrait;
     protected $guarded = ['id'];
 
     public function user()
@@ -18,16 +19,6 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment')->orderBy('created_at', 'desc');
-    }
-
-    public function likes()
-    {
-        return $this->hasMany('App\Models\Like');
-    }
-
-    public function is_liked()
-    {
-        return $this->likes->where('user_id', Auth::user()->id)->count();
+        return $this->hasMany('App\Models\Comment')->withCount('likes')->orderBy('created_at', 'desc');
     }
 }
